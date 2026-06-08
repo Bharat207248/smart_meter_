@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Meter Text Editor</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align:center;
+    background:#f4f4f4;
+    margin:20px;
+}
+
+.controls{
+    margin-bottom:20px;
+}
+
+input, button{
+    padding:8px;
+    margin:5px;
+}
+
+#container{
+    position:relative;
+    display:inline-block;
+}
+
+#meter{
+    max-width:100%;
+    width:500px;
+    height:auto;
+}
+
+#textBox{
+    position:absolute;
+    left:180px;
+    top:220px;
+    color:black;
+    font-size:24px;
+    font-weight:bold;
+    cursor:move;
+    user-select:none;
+    touch-action:none;
+    white-space:nowrap;
+}
+</style>
+</head>
+
+<body>
+
+<h2>Smart Meter Text Editor</h2>
+
+<div class="controls">
+    <input type="text" id="inputText" placeholder="Enter Text">
+
+    <button onclick="updateText()">Update Text</button>
+
+    <button onclick="zoomIn()">A+</button>
+
+    <button onclick="zoomOut()">A-</button>
+
+    <input
+        type="color"
+        id="colorPicker"
+        value="#000000"
+        onchange="changeColor()"
+    >
+</div>
+
+<div id="container">
+    <img id="meter" src="genus-solar-meter-250x250.webp" alt="Meter">
+
+    <div id="textBox">TEXT</div>
+</div>
+
+<script>
+
+const textBox = document.getElementById("textBox");
+
+function updateText(){
+    textBox.innerText =
+        document.getElementById("inputText").value || "TEXT";
+}
+
+let fontSize = 24;
+
+function zoomIn(){
+    fontSize += 2;
+    textBox.style.fontSize = fontSize + "px";
+}
+
+function zoomOut(){
+    fontSize -= 2;
+
+    if(fontSize < 8){
+        fontSize = 8;
+    }
+
+    textBox.style.fontSize = fontSize + "px";
+}
+
+function changeColor(){
+    textBox.style.color =
+        document.getElementById("colorPicker").value;
+}
+
+/* --------------------------
+   DESKTOP DRAG
+--------------------------- */
+
+let dragging = false;
+let offsetX = 0;
+let offsetY = 0;
+
+textBox.addEventListener("mousedown",(e)=>{
+    dragging = true;
+    offsetX = e.offsetX;
+    offsetY = e.offsetY;
+});
+
+document.addEventListener("mousemove",(e)=>{
+
+    if(!dragging) return;
+
+    const rect =
+        document.getElementById("container")
+        .getBoundingClientRect();
+
+    textBox.style.left =
+        (e.clientX - rect.left - offsetX) + "px";
+
+    textBox.style.top =
+        (e.clientY - rect.top - offsetY) + "px";
+});
+
+document.addEventListener("mouseup",()=>{
+    dragging = false;
+});
+
+/* --------------------------
+   MOBILE TOUCH DRAG
+--------------------------- */
+
+textBox.addEventListener("touchstart",(e)=>{
+
+    dragging = true;
+
+    const rect =
+        textBox.getBoundingClientRect();
+
+    offsetX =
+        e.touches[0].clientX - rect.left;
+
+    offsetY =
+        e.touches[0].clientY - rect.top;
+
+});
+
+document.addEventListener("touchmove",(e)=>{
+
+    if(!dragging) return;
+
+    const rect =
+        document.getElementById("container")
+        .getBoundingClientRect();
+
+    textBox.style.left =
+        (e.touches[0].clientX - rect.left - offsetX) + "px";
+
+    textBox.style.top =
+        (e.touches[0].clientY - rect.top - offsetY) + "px";
+
+},{ passive:false });
+
+document.addEventListener("touchend",()=>{
+    dragging = false;
+});
+
+</script>
+
+</body>
+</html>
