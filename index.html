@@ -6,60 +6,242 @@
 <title>Smart Meter Text Editor</title>
 
 <style>
-body{
-    font-family: Arial, sans-serif;
-    text-align:center;
-    background:#f4f4f4;
-    margin:20px;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.controls{
+body{
+    font-family:'Segoe UI',sans-serif;
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+h1{
+    font-size:2.2rem;
+    margin-bottom:20px;
+    text-shadow:0 0 10px rgba(255,255,255,.3);
+}
+
+.buttons{
     margin-bottom:20px;
 }
 
-input, button{
-    padding:8px;
-    margin:5px;
+.buttons button{
+    padding:12px 25px;
+    margin:6px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 4px 15px rgba(37,99,235,.4);
+}
+
+.buttons button:hover{
+    transform:translateY(-2px);
+    background:#1d4ed8;
+}
+
+.controls{
+    background:rgba(255,255,255,.08);
+    backdrop-filter:blur(10px);
+    padding:15px;
+    border-radius:15px;
+    display:inline-block;
+    margin-bottom:20px;
+    box-shadow:0 4px 20px rgba(0,0,0,.3);
+}
+
+.controls input[type="text"]{
+    padding:10px;
+    width:220px;
+    border:none;
+    border-radius:8px;
+    outline:none;
+}
+
+.controls button{
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    background:#10b981;
+    color:white;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.controls button:hover{
+    background:#059669;
+}
+
+.controls input[type="color"]{
+    width:45px;
+    height:40px;
+    border:none;
+    cursor:pointer;
+    background:none;
 }
 
 #container{
     position:relative;
     display:inline-block;
+    background:white;
+    padding:15px;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,.4);
 }
 
 #meter{
+    width:450px;
     max-width:100%;
-    width:500px;
-    height:auto;
+    border-radius:12px;
 }
 
 #textBox{
-    position:absolute;
-    left:180px;
-    top:220px;
-    color:black;
+  position:absolute;
+    left:120px;
+    top:120px;
     font-size:24px;
     font-weight:bold;
+    color:#4A4A4A;
     cursor:move;
-    user-select:none;
     touch-action:none;
-    white-space:nowrap;
+    user-select:none;
+}
+
+.note{
+    margin-top:15px;
+    color:#cbd5e1;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+
+    h1{
+        font-size:1.6rem;
+    }
+
+    #meter{
+        width:100%;
+    }
+
+    .controls{
+        width:95%;
+    }
+
+    .controls input[type="text"]{
+        width:100%;
+        margin-bottom:10px;
+    }
+
+    .buttons button{
+        width:90%;
+        margin:5px 0;
+    }
 }
 </style>
 </head>
-
 <body>
 
-<h2>Smart Meter Text Editor</h2>
+<h1>Smart Meter Text Editor</h1>
+
+<div class="buttons">
+
+    <button onclick="showImage('genus-solar-meter-250x250.webp')">
+        Meter 1
+    </button>
+
+    <button onclick="showImage('WhatsApp Image 2026-06-12 at 8.35.39 AM.jpeg')">
+        Meter 2
+    </button>
+
+    <button onclick="showImage('WhatsApp Image 2026-06-12 at 8.35.39 AM (1).jpeg')">
+        Meter 3
+    </button>
+
+     <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.11 PM.jpeg')">
+        Meter 4
+    </button>
+
+   <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.12 PM (1).jpeg')">
+        Meter 5
+    </button>
+
+
+       <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.12 PM.jpeg')">
+        Meter 6
+    </button>
+
+
+           <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.13 PM.jpeg')">
+        Meter 7
+    </button>
+    
+    <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.14 PM (1).jpeg')">
+        Meter 8
+    </button>
+    <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.14 PM.jpeg')">
+        Meter 9
+    </button>
+
+        <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.15 PM (1).jpeg')">
+        Meter 10
+    </button>
+
+
+        <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.15 PM.jpeg')">
+        Meter 11
+    </button>
+
+    <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.16 PM (1).jpeg')">
+        Meter 12
+    </button>
+
+
+        <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.16 PM.jpeg')">
+        Meter 13
+    </button>
+
+  <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.17 PM (1).jpeg')">
+        Meter 14
+    </button>
+
+  <button onclick="showImage('WhatsApp Image 2026-06-22 at 4.17.17 PM.jpeg')">
+        Meter 15
+    </button>
+
+
+</div>
 
 <div class="controls">
-    <input type="text" id="inputText" placeholder="Enter Text">
 
-    <button onclick="updateText()">Update Text</button>
+    <input
+        type="text"
+        id="inputText"
+        placeholder="Enter Text"
+    >
 
-    <button onclick="zoomIn()">A+</button>
+    <button onclick="updateText()">
+        Update Text
+    </button>
 
-    <button onclick="zoomOut()">A-</button>
+    <button onclick="zoomIn()">
+        A+
+    </button>
+
+    <button onclick="zoomOut()">
+        A-
+    </button>
 
     <input
         type="color"
@@ -67,57 +249,103 @@ input, button{
         value="#000000"
         onchange="changeColor()"
     >
+
 </div>
 
 <div id="container">
-    <img id="meter" src="genus-solar-meter-250x250.webp" alt="Meter">
 
-    <div id="textBox">TEXT</div>
+    <img
+        id="meter"
+        src="genus-solar-meter-250x250.webp"
+        alt="Meter"
+    >
+
+    <div id="textBox">
+        00000
+    </div>
+
 </div>
+
+<p class="note">
+Drag text with mouse or finger. Works on mobile and desktop.
+</p>
 
 <script>
 
-const textBox = document.getElementById("textBox");
+/* IMAGE CHANGE */
 
-function updateText(){
-    textBox.innerText =
-        document.getElementById("inputText").value || "TEXT";
+function showImage(imageName){
+
+    document.getElementById("meter").src =
+    imageName;
+
 }
 
-let fontSize = 24;
+/* TEXT UPDATE */
+
+const textBox =
+document.getElementById("textBox");
+
+function updateText(){
+
+    let value =
+    document.getElementById("inputText").value;
+
+    textBox.innerText =
+    value || "00000";
+
+}
+
+/* COLOR CHANGE */
+
+function changeColor(){
+
+    textBox.style.color =
+    document.getElementById("colorPicker").value;
+
+}
+
+/* FONT ZOOM */
+
+let fontSize = 28;
 
 function zoomIn(){
+
     fontSize += 2;
-    textBox.style.fontSize = fontSize + "px";
+
+    textBox.style.fontSize =
+    fontSize + "px";
+
 }
 
 function zoomOut(){
+
     fontSize -= 2;
 
     if(fontSize < 8){
         fontSize = 8;
     }
 
-    textBox.style.fontSize = fontSize + "px";
+    textBox.style.fontSize =
+    fontSize + "px";
+
 }
 
-function changeColor(){
-    textBox.style.color =
-        document.getElementById("colorPicker").value;
-}
-
-/* --------------------------
-   DESKTOP DRAG
---------------------------- */
+/* DRAG SUPPORT */
 
 let dragging = false;
 let offsetX = 0;
 let offsetY = 0;
 
+/* Desktop */
+
 textBox.addEventListener("mousedown",(e)=>{
+
     dragging = true;
+
     offsetX = e.offsetX;
     offsetY = e.offsetY;
+
 });
 
 document.addEventListener("mousemove",(e)=>{
@@ -125,36 +353,39 @@ document.addEventListener("mousemove",(e)=>{
     if(!dragging) return;
 
     const rect =
-        document.getElementById("container")
-        .getBoundingClientRect();
+    document.getElementById("container")
+    .getBoundingClientRect();
 
     textBox.style.left =
-        (e.clientX - rect.left - offsetX) + "px";
+    (e.clientX - rect.left - offsetX)
+    + "px";
 
     textBox.style.top =
-        (e.clientY - rect.top - offsetY) + "px";
+    (e.clientY - rect.top - offsetY)
+    + "px";
+
 });
 
 document.addEventListener("mouseup",()=>{
+
     dragging = false;
+
 });
 
-/* --------------------------
-   MOBILE TOUCH DRAG
---------------------------- */
+/* Mobile */
 
 textBox.addEventListener("touchstart",(e)=>{
 
     dragging = true;
 
     const rect =
-        textBox.getBoundingClientRect();
+    textBox.getBoundingClientRect();
 
     offsetX =
-        e.touches[0].clientX - rect.left;
+    e.touches[0].clientX - rect.left;
 
     offsetY =
-        e.touches[0].clientY - rect.top;
+    e.touches[0].clientY - rect.top;
 
 });
 
@@ -163,19 +394,23 @@ document.addEventListener("touchmove",(e)=>{
     if(!dragging) return;
 
     const rect =
-        document.getElementById("container")
-        .getBoundingClientRect();
+    document.getElementById("container")
+    .getBoundingClientRect();
 
     textBox.style.left =
-        (e.touches[0].clientX - rect.left - offsetX) + "px";
+    (e.touches[0].clientX - rect.left - offsetX)
+    + "px";
 
     textBox.style.top =
-        (e.touches[0].clientY - rect.top - offsetY) + "px";
+    (e.touches[0].clientY - rect.top - offsetY)
+    + "px";
 
-},{ passive:false });
+},{passive:false});
 
 document.addEventListener("touchend",()=>{
+
     dragging = false;
+
 });
 
 </script>
